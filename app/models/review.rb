@@ -1,4 +1,11 @@
 class Review < ApplicationRecord
   belongs_to :restaurant  #to generate methods  review.restaurant
-  validates :rating, inclusion: (1..5) 
+  belongs_to :user  #to generate methods  review.restaurant
+  validates :rating, inclusion: (1..5)
+  validates :user, uniqueness: { scope: :restaurant, message: "has reviewed this restaurant already" }
+
+  def star_rating
+    '★' * rating  + '☆' * (5 - rating)
+  end
+  
 end

@@ -12,9 +12,11 @@
     <h3>Reviews of <%= restaurant.name %></h3>
 
     <% restaurant.reviews.each do |review| %>
-      <p><%= review.thoughts %><p>
+      <p><%= review.thoughts %> &emsp; <%= review.star_rating%> &emsp; <%=review.user.email%><p>
     <% end %>
-
+    <% if restaurant.reviews.any?%>
+      <p>Average rating: <%=restaurant.average_rating%></p>
+    <% end %>
   <% end %>
 <% else %>
   <h1>No restaurants yet</h1>
