@@ -1,6 +1,7 @@
 <% if @restaurants.any? %>
   <% @restaurants.each do |restaurant| %>
     <h2><%= link_to restaurant.name, restaurant_path(restaurant) %></h2>
+    <p><%= image_tag restaurant.image.url(:medium) %></p>
     <p><%= restaurant.description %></p>
     <p>
       <% if current_user == restaurant.user %>
@@ -13,6 +14,8 @@
 
     <% restaurant.reviews.each do |review| %>
       <p><%= review.thoughts %> &emsp; <%= review.star_rating%> &emsp; <%=review.user.email%><p>
+      <%= link_to "Endorse Review", review_endorsements_path(review), class: 'endorsements-link' %>
+      <span class="endorsements_count"> <%= review.endorsements.count %> </span> <%= 'endorsement'.pluralize(review.endorsements.count) %>
     <% end %>
     <% if restaurant.reviews.any?%>
       <p>Average rating: <%=restaurant.average_rating%></p>

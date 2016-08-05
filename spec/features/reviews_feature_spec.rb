@@ -40,13 +40,13 @@ feature 'reviewing' do
   end
 
   scenario 'cannot review own restaurant' do
-     visit '/restaurants'
-     click_link('Sign in')
-     fill_in('Email', with: 'joe123@joe.com')
-     fill_in('Password', with: '12344321')
-     click_button('Log in')
-     click_link 'Review KFC'
-     expect(page).to have_content('You cannot review your own restaurants')
+    visit '/restaurants'
+    click_link('Sign in')
+    fill_in('Email', with: 'joe123@joe.com')
+    fill_in('Password', with: '12344321')
+    click_button('Log in')
+    click_link 'Review KFC'
+    expect(page).to have_content('You cannot review your own restaurants')
   end
 
   def leave_review(thoughts, rating)
