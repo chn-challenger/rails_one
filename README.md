@@ -16,3 +16,6 @@ $ rails s
 ```
 
 * Visit localhost homepage at [http://localhost:3000/restaurants]
+
+This is a test
+
