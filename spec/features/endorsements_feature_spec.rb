@@ -12,7 +12,7 @@ feature 'endorsing reviews' do
     expect(page).to have_content('1 endorsement')
   end
 
-  xscenario 'Can endorse twice' do
+  scenario 'Can endorse twice' do
     user = User.create(email: 'joe123@joe.com',
       password: '12344321', password_confirmation: '12344321')
     kfc = user.restaurants.create(name: 'KFC')
@@ -22,6 +22,19 @@ feature 'endorsing reviews' do
     click_link 'Endorse Review'
     click_link 'Endorse Review'
     expect(page).to have_content('2 endorsement')
+  end
+
+  scenario 'Can endorse three times' do
+    user = User.create(email: 'joe123@joe.com',
+      password: '12344321', password_confirmation: '12344321')
+    kfc = user.restaurants.create(name: 'KFC')
+    review = kfc.reviews.build_with_user({rating: 3, thoughts: 'It was an abomination'},user)
+    review.save
+    visit '/restaurants'
+    click_link 'Endorse Review'
+    click_link 'Endorse Review'
+    click_link 'Endorse Review'
+    expect(page).to have_content('3 endorsement')
   end
 end
 # <p><%= pluralize review.endorsements.count, 'endorsement' %></p>

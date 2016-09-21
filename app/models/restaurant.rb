@@ -1,4 +1,5 @@
 class Restaurant < ApplicationRecord
+  serialize :haash  , Hash
   belongs_to :user
   validates :name, length: {minimum: 3}, uniqueness: true
   has_attached_file :image, :styles => { :medium => "500x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
